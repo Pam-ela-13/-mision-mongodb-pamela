@@ -64,7 +64,13 @@ db.criaturas.find({ habitat: "Bosques Antiguos" })
 db.criaturas.find({ danger_level: { $gt: 8 } })
 
 //Actulñización (Update)
+
 db.criaturas.updateOne(
     { name: "Elfo" },
-    { $set: { habilidades: "" } }
+    { $push: { habilidades: "poder magico" } }
+
+)
+db.criaturas.updateMany(
+    { habitat: "Bosques Encantados" },
+    { $inc: { danger_level: 1 } }
 )
