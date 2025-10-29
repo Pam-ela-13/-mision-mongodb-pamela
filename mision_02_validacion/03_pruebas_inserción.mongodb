@@ -1,0 +1,66 @@
+use("bestiario")
+//PRUEBA DE GUARDIANES
+//PRUEBA VALIDA
+/*
+db.guardianes.insertOne({
+    nombre: "Artemis",
+    rango: "Maestro",               
+    password_acceso: "Secret123",   
+    nivel: 45,                       
+    inventario: [
+        { nombre_item: "Espada", cantidad: 1 },
+        { nombre_item: "Escudo", cantidad: 1 }
+    ]
+})
+*/
+//PRUEBA INVALIDA-FALLO
+/*db.guardianes.insertOne({
+    nombre: "Eldra",
+    rango: "Novato", 
+    password_acceso: "password", 
+    nivel: 10,
+    inventario: [
+        { nombre_item: "Capa de invisibilidad", cantidad: 1 }
+    ]
+})
+*/
+/*Resultado de la ejecución
+Mensaje de error devuelto por MongoDB:
+Document failed validation*/
+//Poruque ocurre el fallo?
+/**/
+
+//PRUEBA VALIDA DE CRIATURAS
+// Buscamos el guardián válido por su nombre
+/*
+let id_guardian_valido = db.guardianes.findOne({ nombre: "Artemis" })._id;
+
+db.criaturas.insertOne({
+    nombre: "Fénix",
+    habitat: "Montañas",
+    nivel_peligro: 8,             
+    es_legendaria: true,          
+    habilidades: ["Fuego", "Vuelo"],  
+    ficha_veterinaria: {
+        salud: "Óptima",          
+        ultima_revision: new Date()
+    },
+    id_guardian: id_guardian_valido 
+})
+*/
+//PRUEBA INVALIDA-FALLO DE CRIATURAS
+db.criaturas.insertOne({
+    nombre: "Dragón",
+    habitat: "Cuevas",
+    nivel_peligro: 10,
+    es_legendaria: true,
+    habilidades: [],                
+    ficha_veterinaria: {
+        salud: "Óptima",
+        ultima_revision: new Date()
+    },
+    id_guardian: id_guardian_valido
+})
+/*Resultado de la ejecución
+id_guardian_valido is not defined
+*/
